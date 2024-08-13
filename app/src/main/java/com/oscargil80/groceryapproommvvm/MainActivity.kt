@@ -48,43 +48,41 @@ class MainActivity : AppCompatActivity() {
             groceryAdapter.GroceryItemsList = it
             groceryAdapter.notifyDataSetChanged()
         })
-
         binding.FabGrocery.setOnClickListener {
             openDialog()
         }
-
     }
 
-
     fun openDialog() {
-
         val inflater = LayoutInflater.from(this)
-        val v = inflater.inflate(R.layout.grocery_add_dialog, null )
+        val v = inflater.inflate(R.layout.grocery_add_dialog, null)
 
-         val binding = GroceryAddDialogBinding.bind(v)
+        val binding = GroceryAddDialogBinding.bind(v)
         val dialog = Dialog(this)
         Log.e("PASA", "Entra aqui ")
 
         dialog.setContentView(binding.root)
 
 
-            binding.btnCancel.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             dialog.dismiss()
         }
         binding.btnAdd.setOnClickListener {
-            val itemName: String =  binding.etItemName.text.toString()//  itemEdt.text.toString()
-            val itemPrice: String =  binding.etItemPrice.text.toString() //itemPriceEdt.text.toString()
-            val itemQuantity: String = binding.etItemQuanity.text.toString()//etItemQuanity.text.toString()
+            val itemName: String = binding.etItemName.text.toString()//  itemEdt.text.toString()
+            val itemPrice: String =
+                binding.etItemPrice.text.toString() //itemPriceEdt.text.toString()
+            val itemQuantity: String =
+                binding.etItemQuanity.text.toString()//etItemQuanity.text.toString()
             val qty: Int = itemQuantity.toInt()
             val pr: Int = itemPrice.toInt()
             if (itemName.isNotEmpty() && itemPrice.isNotEmpty() && itemQuantity.isNotEmpty()) {
                 val items = GroceryItems(itemName, qty, pr)
                 groceryViewModal.insert(items)
-                Toast.makeText(applicationContext, "Item Innserted...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Item Agregado...", Toast.LENGTH_SHORT).show()
                 groceryAdapter.notifyDataSetChanged()
                 dialog.dismiss()
             } else {
-                Toast.makeText(applicationContext, "Please enter all the data ", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "Por favor Introduce toda la Informacion requerida ", Toast.LENGTH_SHORT)
                     .show()
             }
         }
