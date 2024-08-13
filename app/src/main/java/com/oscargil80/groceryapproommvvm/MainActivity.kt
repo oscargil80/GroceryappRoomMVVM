@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         groceryAdapter = GroceryAdapter(
             list,
             onClickDelete = { grocery -> onClickDelete(grocery) }
+
         )
         binding.RvGrocery.layoutManager = LinearLayoutManager(this)
         binding.RvGrocery.adapter = groceryAdapter
